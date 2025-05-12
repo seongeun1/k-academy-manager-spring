@@ -1,10 +1,12 @@
 //Business Logic
 package com.academy.k_academy_manager_spring.service
 
+
 import com.academy.k_academy_manager_spring.model.Student
 import com.academy.k_academy_manager_spring.repository.StudentRepository
 import org.springframework.stereotype.Service
-
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 @Service
 class StudentService(private val studentRepository: StudentRepository ){
     fun genAllStudents(): List<Student> = studentRepository.findAll()
@@ -14,8 +16,9 @@ class StudentService(private val studentRepository: StudentRepository ){
     fun createStudent(student: Student): Student {
        val maxStdNo = studentRepository.findMaxStdNo()
        val nextStdNo = generateNextStdNo(maxStdNo)
-
-       val newStudent = student.copy(std_no = nextStdNo)
+       var now = LocalDate.now()
+       var strNow = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
+       val newStudent = student.copy(std_no = nextStdNo, erol_dt=strNow)
        return studentRepository.save(newStudent)
 
     }

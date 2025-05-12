@@ -8,3 +8,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+logging:
+  level:
+    root: INFO
+    com.academy.k_academy_manager_spring.controller: INFO
