@@ -10,10 +10,10 @@ import jakarta.persistence.Table
 data class Emp(
     @Id
     @Column(name = "emp_id", length = 5)
-    val emp_no: String,      
+    val empNo: String,      
 
     @Column(length = 15)
-    val emp_nm: String,      
+    val empNm: String,      
 
     @Column(length = 1)
     val sex: String,       
@@ -22,10 +22,10 @@ data class Emp(
     val subject: String,       
 
     @Column(length = 8)
-    val emp_srt_dt: String,
+    val empSrtDt: String,
     
     @Column(length = 8)
-    val emp_end_dt: String   
+    val empEndDt: String   
 
 )
 

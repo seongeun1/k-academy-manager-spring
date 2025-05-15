@@ -16,13 +16,13 @@ class EmpService(private val empRepository: EmpRepository ){
     fun createEmp(emp: Emp): Emp {
        val maxEmpNo = empRepository.findMaxEmpNo()
        val nextEmpNo = generateNextEmpNo(maxEmpNo)
-       val newEmp = emp.copy(emp_no = nextEmpNo)
+       val newEmp = emp.copy(empNo = nextEmpNo)
        return empRepository.save(newEmp)
 
     }
     fun updateEmp(empNo: String, emp: Emp): Emp?{
         return if (empRepository.existsById(empNo)) {
-            empRepository.save(emp.copy(emp_no = empNo))
+            empRepository.save(emp.copy(empNo = empNo))
         } else null
     }
 

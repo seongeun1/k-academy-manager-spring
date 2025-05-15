@@ -23,23 +23,23 @@ data class Clss(
         generator = "clss_seq"
     )
     @Column(name = "clss_no")
-    val clss_no: Int,      
+    val clssNo: Int,      
 
     @Column(name = "clss_nm", length = 100)
-    val clss_nm: String,     
+    val clssNm: String,     
 
     @Column(name = "subject", length = 15)
     val subject: String ? = null, //fill this part in Service      
 
     @Column(name = "clss_srt_dt", length = 8)
-    val clss_srt_dt: String,      
+    val clssSrtDt: String,      
 
     @Column(name = "clss_end_dt", length = 8)
-    val clss_end_dt: String,
+    val clssEndDt: String,
 
     @Column(name = "emp_id", length = 5)
-    val emp_no: String,      
+    val empNo: String,      
 
     @Column(name = "emp_nm", length = 15)
-    val emp_nm: String ? = null //fill this part in Service
+    val empNm: String ? = null //fill this part in Service
 )

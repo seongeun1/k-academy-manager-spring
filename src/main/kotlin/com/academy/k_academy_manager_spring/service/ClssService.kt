@@ -19,16 +19,16 @@ class ClssService
     fun getClssById(clssNo: Int): Clss? = clssRepository.findById(clssNo).orElse(null)
     
     fun createClss(clss: Clss): Clss {
-       val empInfo = empService.getEmpById(clss.emp_no)
-       ?: throw IllegalArgumentException("No such employee: ${clss.emp_no}")
+       val empInfo = empService.getEmpById(clss.empNo)
+       ?: throw IllegalArgumentException("No such employee: ${clss.empNo}")
        
-       val clssWithEmpNm = clss.copy(emp_nm = empInfo.emp_nm, subject = empInfo.subject)
+       val clssWithEmpNm = clss.copy(empNm = empInfo.empNm, subject = empInfo.subject)
        return clssRepository.save(clssWithEmpNm)
 
     }
     fun updateClss(clssNo: Int, clss: Clss): Clss?{
         return if (clssRepository.existsById(clssNo)) {
-            clssRepository.save(clss.copy(clss_no = clssNo))
+            clssRepository.save(clss.copy(clssNo = clssNo))
         } else null
     }
 
