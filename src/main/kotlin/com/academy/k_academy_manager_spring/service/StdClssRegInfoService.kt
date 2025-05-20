@@ -3,6 +3,9 @@ package com.academy.k_academy_manager_spring.service
 import com.academy.k_academy_manager_spring.dto.*
 import com.academy.k_academy_manager_spring.model.StdClssRegInfoId
 import com.academy.k_academy_manager_spring.repository.StdClssRegInfoRepository
+import com.academy.k_academy_manager_spring.service.ClssService
+import com.academy.k_academy_manager_spring.service.StudentService
+
 import org.springframework.stereotype.Service
 import org.springframework.data.repository.*
 
@@ -10,7 +13,11 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 @Service
-class StdClssRegInfoService(private val repo : StdClssRegInfoRepository){
+class StdClssRegInfoService(
+    private val repo: StdClssRegInfoRepository,
+    private val clssServ: ClssService,
+    private val stdServ: StudentService)
+{
     private var now = LocalDate.now()
     private var strNow = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
 
@@ -24,11 +31,20 @@ class StdClssRegInfoService(private val repo : StdClssRegInfoRepository){
 
     fun createStdClssRegInfo(dto: StdClssRegInfoDto): StdClssRegInfoDto {
 
-       val pkid = StdClssRegInfoId(dto.clssNo, dto.stdNo)
-       val orgDtoEnt = dto.toEntity()
+        //check if there is a class with clssNo input
+        val clssInfo = clssServ.getClssById(dto.clssNo)
+        ?: throw IllegalArgumentException("No such class: ${dto.clssNo}")
+
+        //check if there is a student with stdNo input
+        val stdInfo = stdServ.getStudentById(dto.stdNo)
+        ?: throw IllegalArgumentException("No such student: ${dto.stdNo}")
+
+
+        val pkid      = StdClssRegInfoId(dto.clssNo, dto.stdNo)
+        val orgDtoEnt = dto.toEntity()
       
-       val DtoEnt = orgDtoEnt.copy( id = pkid, erolDt=strNow, abndDt="99999999") //Register today
-       return repo.save(DtoEnt).toDto()
+        val DtoEnt    = orgDtoEnt.copy( id = pkid, erolDt=strNow, abndDt="99999999") //Register today
+        return repo.save(DtoEnt).toDto()
 
     }
     fun updateStdClssRegInfo(clssNo : Int, stdNo : String, dto: StdClssRegInfoDto): StdClssRegInfoDto?{

@@ -5,6 +5,9 @@ import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 
+/*
+ * Entity models how you persist data to the database.
+ */
 
 @Entity
 @Table(name = "bm_tbd_clss_reg_info")
