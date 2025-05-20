@@ -7,7 +7,8 @@ data class ApiErrorResponse(
     val status: Int,  //HTTP info
     val error: String, //HTTP info
     val path: String, //the request URL
-    val fieldErrors: List<FieldError>? = null //list for validation failures
+    val fieldErrors: List<FieldError>? = null, //list for validation failures
+    val message: String //my own message for error
 )
 
 data class FieldError(

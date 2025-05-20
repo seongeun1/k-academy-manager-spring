@@ -52,7 +52,7 @@ class StdClssRegInfoController(private val serv: StdClssRegInfoService) {
     }
 
     @GetMapping("/clss/{clssNo}")
-    fun getByStd(@PathVariable clssNo: Int): ResponseEntity<List<StdClssRegInfoDto>> {
+    fun getByClss(@PathVariable clssNo: Int): ResponseEntity<List<StdClssRegInfoDto>> {
         log.info("◼︎◼︎◼︎◼︎ Get /api/students/$clssNo")
         val list: List<StdClssRegInfoDto> = serv.getByClss(clssNo)
 
