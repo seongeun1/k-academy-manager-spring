@@ -11,4 +11,5 @@ spring:
 logging:
   level:
     root: INFO
+    org.springdoc: DEBUG
     com.academy.k_academy_manager_spring.controller: INFO

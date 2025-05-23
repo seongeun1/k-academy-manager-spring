@@ -9,7 +9,7 @@ A sample backend application demonstrating a full CRUD stack using Kotlin, Sprin
 This project uses four main tables:
 
 - **student**  
-  Stores basic student information (e.g. `student_id`, `name`, `phonenumber`, …).
+  Stores basic student information (e.g. `student_no`, `name`, `phonenumber`, …).
 
 - **class**  
   Stores class information (e.g. `class_id`, `title`, `description`, …).
@@ -17,6 +17,11 @@ This project uses four main tables:
 
 - **class_registration**  
   A join table to associate students with classes (composite key: `class_id`, `student_id`), plus metadata like enrollment date (`enrol_dt`) and abandonment date (`abnd_dt`).
+
+- **employee**
+ Stores basic instructor information (e.g. `employee_no`, `name`, ...).
+
+![API Swagger UI](API.png)
 
 
 
